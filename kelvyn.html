@@ -3,112 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Tree Interface</title>
+    <title>Link Tree Custom</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #a8c0ff, #fbc2eb);
+            /* Fundo limpo conforme solicitado (sem manchas roxas/amarelas) */
+            background: linear-gradient(180deg, #6ec3f4 0%, #d482d9 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
         }
 
         .container {
             width: 100%;
             max-width: 400px;
-            text-align: center;
             padding: 20px;
+            text-align: center;
         }
 
-        .profile-circle {
+        /* Bola branca / Foto de Perfil */
+        .profile-img {
             width: 100px;
             height: 100px;
-            background-color: white;
+            background-color: white; /* Cor de fundo se o link falhar */
             border-radius: 50%;
             margin: 0 auto 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-
-            /* pra imagem via JS */
-            background-size: cover;
-            background-position: center;
+            border: 3px solid white;
+            object-fit: cover;
+            display: block;
         }
 
-        .username {
-            color: white;
-            font-weight: bold;
+        .name {
             font-size: 1.2rem;
+            font-weight: bold;
             margin-bottom: 30px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
         }
 
-        .link-card {
-            background: rgba(255, 255, 255, 0.2);
+        /* Botões com ícones e links */
+        .link-button {
+            background: rgba(255, 255, 255, 0.15);
             border: 2px solid white;
             border-radius: 50px;
-            padding: 15px;
+            padding: 12px 25px;
             margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.2s;
         }
 
-        .link-card:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.02);
+        .link-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.03);
         }
 
-        .footer-icons {
-            margin-top: 30px;
+        .link-button img {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        /* Rodapé com ícones circulares */
+        .footer {
+            margin-top: 25px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        .icon-circle {
+        .footer-icon {
             width: 35px;
             height: 35px;
-            border: 2px solid white;
+            border: 1.5px solid white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 0.8rem;
+            font-size: 14px;
             text-decoration: none;
+            color: white;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-
-        <!-- ID adicionado pro JS controlar a foto -->
-        <div class="profile-circle" id="profilePhoto"></div>
+        <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img">
         
-        <!-- ID adicionado pro JS trocar o nome -->
-        <div class="username" id="username">Your Name</div>
+        <div class="name">@SeuNome</div>
 
-        <!-- Container onde os botões serão criados dinamicamente -->
-        <div id="links"></div>
+        <a href="https://github.com/SEU_USUARIO" target="_blank" class="link-button">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub">
+            GitHub
+        </a>
 
-        <div class="footer-icons">
-            <a href="#" class="icon-circle">🔗</a>
-            <a href="#" class="icon-circle">E</a>
-            <a href="#" class="icon-circle">🎙️</a>
-            <a href="#" class="icon-circle">A</a>
-            <a href="#" class="icon-circle">▶</a>
-            <a href="#" class="icon-circle">$</a>
+        <a href="https://instagram.com/SEU_USUARIO" target="_blank" class="link-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            Instagram
+        </a>
+
+        <a href="https://youtube.com/SEU_CANAL" target="_blank" class="link-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube">
+            YouTube
+        </a>
+
+        <a href="https://twitch.tv/SEU_USUARIO" target="_blank" class="link-button">
+            <img src="https://pnggrid.com/wp-content/uploads/2021/05/Twitch-Logo-Transparent.png" alt="Twitch">
+            Twitch
+        </a>
+
+        <div class="footer">
+            <a href="#" class="footer-icon">🔗</a>
+            <a href="#" class="footer-icon">E</a>
+            <a href="#" class="footer-icon">🎙️</a>
+            <a href="#" class="footer-icon">A</a>
+            <a href="#" class="footer-icon">▶</a>
+            <a href="#" class="footer-icon">$</a>
         </div>
     </div>
-
-    <!-- script no FINAL (importante) -->
-    <script src="script.js"></script>
 
 </body>
 </html>
