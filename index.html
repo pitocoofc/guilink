@@ -2,113 +2,38 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Tree Interface</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #a8c0ff, #fbc2eb);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .profile-circle {
-            width: 100px;
-            height: 100px;
-            background-color: white;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-
-            /* pra imagem via JS */
-            background-size: cover;
-            background-position: center;
-        }
-
-        .username {
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
-        }
-
-        .link-card {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            border-radius: 50px;
-            padding: 15px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .link-card:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.02);
-        }
-
-        .footer-icons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .icon-circle {
-            width: 35px;
-            height: 35px;
-            border: 2px solid white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 0.8rem;
-            text-decoration: none;
-        }
-    </style>
+    <title>GuiLink</title>
 </head>
 <body>
 
-    <div class="container">
+    <p>Crie seu perfil em GuiLink</p>
 
-        <!-- ID adicionado pro JS controlar a foto -->
-        <div class="profile-circle" id="profilePhoto"></div>
-        
-        <!-- ID adicionado pro JS trocar o nome -->
-        <div class="username" id="username">Your Name</div>
+    <script>
+        // Pega os parâmetros da URL
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get("user");
 
-        <!-- Container onde os botões serão criados dinamicamente -->
-        <div id="links"></div>
+        // Se existir ?user=nome
+        if (user) {
+            // Monta o arquivo correspondente
+            const file = `${user}.html`;
 
-        <div class="footer-icons">
-            <a href="#" class="icon-circle">🔗</a>
-            <a href="#" class="icon-circle">E</a>
-            <a href="#" class="icon-circle">🎙️</a>
-            <a href="#" class="icon-circle">A</a>
-            <a href="#" class="icon-circle">▶</a>
-            <a href="#" class="icon-circle">$</a>
-        </div>
-    </div>
-
-    <!-- script no FINAL (importante) -->
-    <script src="script.js"></script>
+            // Verifica se o arquivo existe
+            fetch(file, { method: "HEAD" })
+                .then(response => {
+                    if (response.ok) {
+                        // Redireciona se existir
+                        window.location.replace(file);
+                    } else {
+                        // Usuário não existe
+                        document.body.innerHTML = "<h2>Usuário não encontrado</h2>";
+                    }
+                })
+                .catch(() => {
+                    document.body.innerHTML = "<h2>Erro ao carregar perfil</h2>";
+                });
+        }
+    </script>
 
 </body>
 </html>
