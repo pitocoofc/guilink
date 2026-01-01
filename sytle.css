@@ -1,1 +1,35 @@
+body {
+  margin: 0;
+  background: #0f0f0f;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
 
+.card {
+  background: #161616;
+  width: 280px;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card a {
+  display: block;
+  margin-top: 15px;
+  padding: 10px;
+  background: #5865F2; /* combina com Discord */
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
