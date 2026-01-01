@@ -1,30 +1,34 @@
-
 const profiles = {
   kelvyn: {
     name: "Kelvyn",
-    bio: "Dev criativo • jogos • sistemas experimentais",
+    bio: "Dev criativo • jogos • sistemas",
     photo: "https://cdn.discordapp.com/avatars/ID/AVATAR.png",
-    instagram: "https://instagram.com/seuinsta"
+    instagram: "https://instagram.com/",
+    github: "https://github.com/pitocoofc",
+    site: "https://pitocoofc.github.io"
   },
 
   ghost: {
     name: "ghost!",
-    bio: "Animador • Roblox • criatividade espontânea",
+    bio: "Animador • Roblox • criatividade",
     photo: "https://cdn.discordapp.com/avatars/ID/AVATAR.png",
-    instagram: "https://instagram.com/ghost"
+    instagram: "https://instagram.com/",
+    github: "https://github.com/",
+    site: "#"
   }
 };
 
-const params = new URLSearchParams(window.location.search);
-const user = params.get("user");
+const path = window.location.pathname.split("/").filter(Boolean);
+const user = path[path.length - 1];
 
-if (profiles[user]) {
-  const p = profiles[user];
+const p = profiles[user];
+
+if (p) {
   document.getElementById("name").textContent = p.name;
   document.getElementById("bio").textContent = p.bio;
   document.getElementById("photo").src = p.photo;
+
   document.getElementById("instagram").href = p.instagram;
-} else {
-  document.getElementById("profile").innerHTML =
-    "<p>Perfil não encontrado</p>";
+  document.getElementById("github").href = p.github;
+  document.getElementById("site").href = p.site;
 }
