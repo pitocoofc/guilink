@@ -20,6 +20,27 @@ const profiles = {
     }
   }
 };
+ghost: {
+    name: "Kelvyn",
+    bio: "Dev criativo • jogos • sistemas",
+    photo: "https://cdn.discordapp.com/avatars/ID/AVATAR.png",
+
+    buttons: {
+      instagram: {
+        enabled: true,
+        url: "https://instagram.com/"
+      },
+      github: {
+        enabled: false,
+        url: ""
+      },
+      site: {
+        enabled: true,
+        url: "https://pitocoofc.github.io"
+      }
+    }
+  }
+};
 
 const params = new URLSearchParams(window.location.search);
 const user = params.get("user");
