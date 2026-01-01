@@ -1,40 +1,18 @@
+<script>
 const profiles = {
   kelvyn: {
     name: "Kelvyn",
-    bio: "Dev criativo • jogos • sistemas",
-    photo: "https://cdn.discordapp.com/avatars/ID/AVATAR.png",
+    photo: "https://cdn.discordapp.com/avatars/ID/HASH.png",
 
-    buttons: {
-      instagram: {
+    links: {
+      Instagram: {
         enabled: true,
         url: "https://instagram.com/"
       },
-      github: {
-        enabled: false,
-        url: ""
+      GitHub: {
+        enabled: false
       },
-      site: {
-        enabled: true,
-        url: "https://pitocoofc.github.io"
-      }
-    }
-  }
-};
-ghost: {
-    name: "Kelvyn",
-    bio: "Dev criativo • jogos • sistemas",
-    photo: "https://cdn.discordapp.com/avatars/ID/AVATAR.png",
-
-    buttons: {
-      instagram: {
-        enabled: true,
-        url: "https://instagram.com/"
-      },
-      github: {
-        enabled: false,
-        url: ""
-      },
-      site: {
+      Site: {
         enabled: true,
         url: "https://pitocoofc.github.io"
       }
@@ -44,28 +22,32 @@ ghost: {
 
 const params = new URLSearchParams(window.location.search);
 const user = params.get("user");
-const p = profiles[user];
+const profile = profiles[user];
 
-const linksContainer = document.getElementById("links");
-
-if (!p) {
-  document.body.innerHTML = "<p style='color:white'>Perfil não encontrado</p>";
+if (!profile) {
+  document.body.innerHTML = "Perfil não encontrado";
 } else {
-  document.getElementById("name").textContent = p.name;
-  document.getElementById("bio").textContent = p.bio;
-  document.getElementById("photo").src = p.photo;
+  // Nome
+  document.getElementById("username").textContent = profile.name;
 
-  // limpa os botões
-  linksContainer.innerHTML = "";
+  // Foto (como background)
+  const photo = document.getElementById("profilePhoto");
+  photo.style.backgroundImage = `url(${profile.photo})`;
+  photo.style.backgroundSize = "cover";
+  photo.style.backgroundPosition = "center";
 
-  for (const key in p.buttons) {
-    const btn = p.buttons[key];
-    if (btn.enabled) {
-      const a = document.createElement("a");
-      a.href = btn.url;
-      a.target = "_blank";
-      a.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-      linksContainer.appendChild(a);
+  // Links
+  const linksDiv = document.getElementById("links");
+
+  for (const name in profile.links) {
+    const link = profile.links[name];
+    if (link.enabled) {
+      const div = document.createElement("div");
+      div.className = "link-card";
+      div.textContent = name;
+      div.onclick = () => window.open(link.url, "_blank");
+      linksDiv.appendChild(div);
     }
   }
 }
+</script>
